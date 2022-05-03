@@ -32,14 +32,17 @@ export class HomePage {
     this.marcador2 = marker([-17.394996, -66.157186],{icon:this.icono,draggable: true}).on('mousemove', (e)=>{
       // console.log('nueva distancia: ', e["latlng"]);
       // console.log('nueva distancia marcador: ', this.marcador2.getLatLng());
-      this.getDistancia();
+      if(this.getDistancia() <= 100){
+        console.log("Marcado");
+      }
     });
     // this.marcador2 = marker([-17.394996, -66.157186],{icon:this.icono,draggable: true}).on('mouseup', this.getDistanciaNew);
     this.marcador2.addTo(this.mapa);
   }
-  private getDistancia():void{
+  private getDistancia():number{
     //console.log('la distancia es: ', dist1.distanceTo(dist2) );
     // console.log('marcador : ', this.marcador2.getLatLng() );
     console.log('la distancia en metros es: ', this.mapa.distance(this.marcador.getLatLng(),this.marcador2.getLatLng()) );
+    return this.mapa.distance(this.marcador.getLatLng(),this.marcador2.getLatLng());
   }
 }
